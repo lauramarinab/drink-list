@@ -1,17 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import "./assets/fontello/css/icon.css";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { FilterProvider } from "./providers/FilterProvider";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <FilterProvider>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </FilterProvider>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

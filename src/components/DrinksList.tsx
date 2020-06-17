@@ -1,0 +1,53 @@
+import * as React from "react";
+import styled from "styled-components";
+import useSWR from "swr";
+import { Drink } from "../types/Drink";
+import { FilterContext } from "../providers/FilterProvider";
+import { fetchData } from "../client";
+import { Typography } from "@material-ui/core";
+import { DrinkCard } from "./UI/DrinkCard";
+import { transparentScrollbar } from "./UI/ScrollbarStyles";
+import { DrinkDialog } from "./UI/DrinkDialog";
+
+const List = styled.div`
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  row-gap: 20px;
+  justify-items: center;
+  padding: 20px 10px;
+
+  ${transparentScrollbar};
+`;
+
+const DrinksList: React.FC = () => {
+  const { ingredient } = React.useContext(FilterContext);
+
+  const [selectedDrinkId, setSelectedDrinkId] = React.useState<string | null>(null);
+
+  const { data: drinksByIngredient, error: errorDrinkList } = useSWR<{ drinks: Array<Drink> }>(
+    `/filter.php?i=${ingredient}`,
+    fetchData
+  );
+
+  const drinks = !drinksByIngredient ? [] : drinksByIngredient.drinks;
+
+  return (
+    <>
+      <DrinkDialog handleClose={() => setSelectedDrinkId(null)} drinkId={selectedDrinkId} />
+      <div style={{ overflow: "hidden" }}>
+        <Typography variant="subtitle1" style={{ padding: "0px 20px", zIndex: 1, position: "relative", height: 40 }}>
+          La nostra selezione
+        </Typography>
+        <div style={{ height: "calc(100vh - 130px)", overflowY: "scroll", padding: "0px 10px", paddingBottom: 15 }}>
+          <List>
+            {drinks.map((drink, i) => (
+              <DrinkCard drink={drink} key={i} onSelectedDrink={(id) => setSelectedDrinkId(id)} />
+            ))}
+          </List>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export { DrinksList };
