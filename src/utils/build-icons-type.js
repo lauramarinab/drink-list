@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fontelloConfig = require("./src/assets/fontello/config.json");
+const fontelloConfig = require("../assets/fontello/config.json");
 
 const iconNames = fontelloConfig.glyphs.map((glyph) => `"${glyph.css}"`);
 const tsType = `export type IconNames = ${iconNames.join(" | ")};`;

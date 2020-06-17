@@ -28,7 +28,7 @@
     "husky": "^4.2.5"
   },
   "scripts": {
-    "start": "node build-icons-type.js && react-scripts start",
+    "start": "node ./src/utils/build-icons-type.js && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
