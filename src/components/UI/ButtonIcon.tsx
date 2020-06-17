@@ -35,7 +35,6 @@ const B = styled.button<{ undo?: boolean } & React.HTMLProps<HTMLButtonElement>>
 
     &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #3ab0ff;
   }
 `;
 

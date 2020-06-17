@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Drink } from "../../types/Drink";
 import { ButtonIcon } from "./ButtonIcon";
 import { Typography } from "@material-ui/core";
+import { DrinkListContext } from "../../providers/DrinkListProvider";
 
 const Wrapper = styled.div`
   position: relative;
@@ -33,26 +34,21 @@ interface Props {
 }
 
 const DrinkCard: React.FC<Props> = ({ drink, onSelectedDrink }) => {
+  const { onChangeMyOrder } = React.useContext(DrinkListContext);
+
+  const { idDrink, strDrink, strDrinkThumb } = drink;
+
   return (
-    <Wrapper onClick={() => onSelectedDrink(drink.idDrink)}>
-      <Thumb src={drink.strDrinkThumb} alt={drink.strDrink} />
-      <Typography variant="subtitle2">{drink.strDrink}</Typography>
+    <Wrapper onClick={() => onSelectedDrink(idDrink)}>
+      <Thumb src={strDrinkThumb} alt={strDrink} />
+      <Typography variant="subtitle2">{strDrink}</Typography>
       <WrapperAction>
         <ButtonIcon iconName="show" />
         <ButtonIcon
           iconName="add"
           onClick={(e) => {
             e.stopPropagation();
-            const myOrderLocalStorage = localStorage.getItem("myOrder");
-
-            let myPreviousOrder: Array<Drink> = [];
-            if (myOrderLocalStorage) {
-              myPreviousOrder = JSON.parse(myOrderLocalStorage);
-            }
-
-            const myCurrentOrder = JSON.stringify([...myPreviousOrder, drink]);
-
-            localStorage.setItem("myOrder", myCurrentOrder);
+            onChangeMyOrder({ id: idDrink, name: strDrink }, "add");
           }}
         />
       </WrapperAction>

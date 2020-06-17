@@ -3,11 +3,11 @@ import "./assets/fontello/css/icon.css";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { FilterProvider } from "./providers/FilterProvider";
+import { DrinkListProvider } from "./providers/DrinkListProvider";
 
 ReactDOM.render(
-  <FilterProvider>
+  <DrinkListProvider>
     <App />
-  </FilterProvider>,
+  </DrinkListProvider>,
   document.getElementById("root")
 );

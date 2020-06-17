@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Header } from "./components/UI/Header";
 import { FirstStep } from "./components/FirstStep";
-import { FilterContext } from "./providers/FilterProvider";
+import { DrinkListContext } from "./providers/DrinkListProvider";
 import { DrinksList } from "./components/DrinksList";
+import { OrderPanel } from "./components/OrderPanel/OrderPanel";
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,15 +14,20 @@ const Wrapper = styled.div`
 `;
 
 const App: React.FC = () => {
-  const { ingredient } = React.useContext(FilterContext);
+  const { ingredient } = React.useContext(DrinkListContext);
+
+  const [openMyOrderPanel, setOpenMyOrderPanel] = React.useState<boolean>(false);
 
   return (
-    <Wrapper>
-      <Header />
-      <div style={{ height: ingredient ? "100%" : "160px", overflow: "hidden" }}>
-        {!ingredient ? <FirstStep /> : <DrinksList />}
-      </div>
-    </Wrapper>
+    <>
+      <OrderPanel open={openMyOrderPanel} handleClose={() => setOpenMyOrderPanel(false)} />
+      <Wrapper>
+        <Header onOpenMyOrder={() => setOpenMyOrderPanel(true)} />
+        <div style={{ height: ingredient ? "100%" : "160px", overflow: "hidden" }}>
+          {!ingredient ? <FirstStep /> : <DrinksList />}
+        </div>
+      </Wrapper>
+    </>
   );
 };
 

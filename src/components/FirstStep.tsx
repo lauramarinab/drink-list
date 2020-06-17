@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { SelectWithIngredient } from "../components/SelectWithIngredient";
-import { FilterContext } from "../providers/FilterProvider";
+import { DrinkListContext } from "../providers/DrinkListProvider";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Title = styled.p`
 `;
 
 const FirstStep: React.FC = () => {
-  const { ingredient, onChangeIngredient } = React.useContext(FilterContext);
+  const { ingredient, onChangeIngredient } = React.useContext(DrinkListContext);
 
   return (
     <Wrapper>

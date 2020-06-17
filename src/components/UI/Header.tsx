@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { FilterContext } from "../../providers/FilterProvider";
+import { DrinkListContext } from "../../providers/DrinkListProvider";
 import { SelectWithIngredient } from "../SelectWithIngredient";
-import { Icon } from "./Icon";
+import { OrderIcon } from "../OrderIcon";
 
 const drinkLogo = require("../../assets/drink-logo.svg");
 
@@ -31,8 +31,12 @@ const Logo = styled.img<{ ingredientExist: boolean }>`
   justify-self: ${(props) => (props.ingredientExist ? "start" : "center")};
 `;
 
-const Header: React.FC = () => {
-  const { ingredient, onChangeIngredient } = React.useContext(FilterContext);
+interface Props {
+  onOpenMyOrder: () => void;
+}
+
+const Header: React.FC<Props> = ({ onOpenMyOrder }) => {
+  const { ingredient, onChangeIngredient } = React.useContext(DrinkListContext);
 
   return (
     <Wrapper ingredientExist={Boolean(ingredient)}>
@@ -45,7 +49,7 @@ const Header: React.FC = () => {
             onChangeIngredient={onChangeIngredient}
             minWidth={300}
           />
-          <Icon name="comments" style={{ justifySelf: "end" }} iconSize="large" />
+          <OrderIcon onOpenMyOrder={onOpenMyOrder} />
         </>
       )}
     </Wrapper>
