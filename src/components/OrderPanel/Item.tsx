@@ -4,6 +4,8 @@ import { Typography } from "@material-ui/core";
 import styled from "styled-components";
 import { Icon } from "../UI/Icon";
 import { DrinkListContext, MyOrderType } from "../../providers/DrinkListProvider";
+import { DRINK_PRICE } from "../../utils/variable";
+import { ButtonIcon } from "../UI/ButtonIcon";
 
 const Wrapper = styled.div`
   padding: 15px 0px;
@@ -12,7 +14,7 @@ const Wrapper = styled.div`
 const QuantitySection = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 35px;
+  margin-left: 50px;
 `;
 
 interface Props {
@@ -36,13 +38,26 @@ const Item: React.FC<Props> = ({ order }) => {
           {strDrink}
         </Typography>
       </div>
-      <QuantitySection>
-        <Icon name="remove" onClick={() => onChangeMyOrder({ id: idDrink, name: strDrink }, "single-remove")} />
-        <Typography variant="subtitle2" style={{ width: 25, textAlign: "center" }}>
-          {quantity}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: 20 }}>
+        <QuantitySection>
+          <ButtonIcon
+            iconName="remove"
+            onClick={() => onChangeMyOrder({ id: idDrink, name: strDrink }, "single-remove")}
+            style={{ width: 30, height: 30 }}
+          />
+          <Typography variant="subtitle2" style={{ width: 25, textAlign: "center", margin: "0px 10px" }}>
+            {quantity}
+          </Typography>
+          <ButtonIcon
+            iconName="add"
+            onClick={() => onChangeMyOrder({ id: idDrink, name: strDrink }, "add")}
+            style={{ width: 30, height: 30 }}
+          />
+        </QuantitySection>
+        <Typography variant="subtitle2" style={{ fontWeight: 700 }}>
+          € {quantity * DRINK_PRICE}
         </Typography>
-        <Icon name="add" onClick={() => onChangeMyOrder({ id: idDrink, name: strDrink }, "add")} />
-      </QuantitySection>
+      </div>
     </Wrapper>
   );
 };

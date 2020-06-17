@@ -2,15 +2,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #f6f4f2;
+  color: var(--text);
 }
 
 .icon-s {
@@ -23,4 +23,11 @@ body {
 
 .icon-l {
   font-size: 45px;
+}
+
+:root {
+  --primary: #30719c;
+  --primary-hover: #0f4c74;
+  --text: #333333;
+  --grey: #929292;
 }

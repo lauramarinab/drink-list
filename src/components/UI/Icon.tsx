@@ -13,7 +13,7 @@ interface Props {
 
 const I = styled.i<{ color?: string; onClick?: () => void; disabled?: boolean }>`
   position: relative;
-  color: ${(props) => (props.color ? props.color : "#000000")};
+  color: ${(props) => (props.color ? props.color : "var(--primary)")};
   opacity: ${(props) => (props.disabled ? 0.7 : 1)};
 
   &::before {
@@ -27,7 +27,7 @@ const I = styled.i<{ color?: string; onClick?: () => void; disabled?: boolean }>
     css`
       cursor: pointer;
       :hover {
-        color: #000000;
+        color: var(--primary-hover);
       }
     `}
 
@@ -36,7 +36,7 @@ const I = styled.i<{ color?: string; onClick?: () => void; disabled?: boolean }>
     css`
       cursor: default;
       :hover {
-        color: #000000;
+        color: var(--primary);
       }
     `}
 `;

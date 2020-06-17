@@ -20,7 +20,7 @@ const WrapperList = styled.div`
 const List = styled.div`
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  row-gap: 20px;
+  row-gap: 40px;
   justify-items: center;
   padding: 20px 10px;
 
@@ -43,7 +43,7 @@ const DrinksList: React.FC = () => {
     <>
       <DrinkDialog handleClose={() => setSelectedDrinkId(null)} drinkId={selectedDrinkId} />
       <div style={{ overflow: "hidden" }}>
-        <Typography variant="subtitle1" style={{ padding: "0px 20px", zIndex: 1, position: "relative", height: 40 }}>
+        <Typography variant="subtitle1" style={{ padding: "0px 20px", height: 40, fontWeight: 700 }}>
           La nostra selezione
         </Typography>
         <WrapperList>

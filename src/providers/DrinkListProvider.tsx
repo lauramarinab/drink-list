@@ -10,6 +10,7 @@ type DrinkListContext = {
 
   myOrder: Array<MyOrderType>;
   onChangeMyOrder: (drinkDetails: { id: string; name: string }, action: ActionOrder) => void;
+  onEmptyMyOrder: () => void;
 };
 
 const DrinkListContext = React.createContext<DrinkListContext>({} as DrinkListContext);
@@ -19,6 +20,8 @@ const DrinkListProvider: React.FC = ({ children }) => {
   const [myOrder, setMyOrder] = React.useState<Array<MyOrderType>>([]);
 
   const onChangeIngredient = (ingredient: string) => setIngredient(ingredient);
+
+  const onEmptyMyOrder = () => setMyOrder([]);
 
   const onChangeMyOrder = (drinkDetails: { id: string; name: string }, action: ActionOrder) => {
     const { id, name } = drinkDetails;
@@ -69,7 +72,7 @@ const DrinkListProvider: React.FC = ({ children }) => {
   };
 
   return (
-    <DrinkListContext.Provider value={{ ingredient, onChangeIngredient, myOrder, onChangeMyOrder }}>
+    <DrinkListContext.Provider value={{ ingredient, onChangeIngredient, myOrder, onChangeMyOrder, onEmptyMyOrder }}>
       {children}
     </DrinkListContext.Provider>
   );

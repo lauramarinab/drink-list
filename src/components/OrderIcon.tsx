@@ -15,7 +15,8 @@ const Badge = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #000000;
+  background: var(--primary);
+  user-select: none;
   left: -70px;
   transition: all 0.2s ease-in-out;
   transform: translate(-50%, 0);
@@ -62,7 +63,7 @@ interface Props {
 const OrderIcon: React.FC<Props> = ({ onOpenMyOrder }) => {
   const { myOrder } = React.useContext(DrinkListContext);
 
-  const quantity = myOrder
+  const totalQuantity = myOrder
     .map((d) => d.quantity)
     .reduce((acc, next) => {
       return acc + next;
@@ -70,8 +71,8 @@ const OrderIcon: React.FC<Props> = ({ onOpenMyOrder }) => {
 
   return (
     <div style={{ justifySelf: "end", position: "relative" }}>
-      <CSSTransition in={quantity > 0} timeout={0} unmountOnExit>
-        {(status) => <Badge className={status}>{quantity}</Badge>}
+      <CSSTransition in={totalQuantity > 0} timeout={0} unmountOnExit>
+        {(status) => <Badge className={status}>{totalQuantity}</Badge>}
       </CSSTransition>
       <ImgOrder src={orderIcon} alt="my order panel" onClick={onOpenMyOrder} />
     </div>

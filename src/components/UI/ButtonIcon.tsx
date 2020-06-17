@@ -7,7 +7,7 @@ import { Icon } from "./Icon";
 const B = styled.button<{ undo?: boolean } & React.HTMLProps<HTMLButtonElement>>`
   border: unset;
   color: #ffffff;
-  background: #000000;
+  background: var(--primary);
   height: 40px;
   width: 40px;
   border-radius: 40px;
@@ -19,6 +19,10 @@ const B = styled.button<{ undo?: boolean } & React.HTMLProps<HTMLButtonElement>>
   box-shadow: none;
 
   transition: opacity 0.2s;
+
+  &:hover {
+    background: var(--primary-hover);
+  }
 
   ${(props) =>
     props.undo &&

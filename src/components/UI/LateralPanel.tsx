@@ -40,7 +40,6 @@ const Wrapper = styled.div`
 const ContentPanel = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px;
   width: 400px;
   height: 100%;
 `;
