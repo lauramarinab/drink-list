@@ -1,9 +1,9 @@
 import * as React from "react";
 import useSWR from "swr";
-
 import { fetchData } from "../client";
 import { Ingredient } from "../types/Ingredient";
 import { Select } from "./UI/Select";
+import { ErrorSnackbar } from "./UI/ErrorSnackbar";
 
 interface Props {
   selectedIngredient: string | null;
@@ -18,8 +18,9 @@ const SelectWithIngredient: React.FC<Props> = ({ selectedIngredient, onChangeIng
   );
 
   if (ingredientsError) {
-    return <div> qualcosa è andato storto!</div>;
+    return <ErrorSnackbar open={ingredientsError} />;
   }
+
   if (!allIngredients) {
     return <div style={{ height: 32 }}> Sto cercando gli ingredienti 😼</div>;
   }

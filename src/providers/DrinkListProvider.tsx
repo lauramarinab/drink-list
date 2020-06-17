@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Drink } from "../types/Drink";
 
 export type MyOrderType = { idDrink: string; strDrink: string; quantity: number };
 type ActionOrder = "add" | "remove-all" | "single-remove";

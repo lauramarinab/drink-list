@@ -29,6 +29,9 @@ const B = styled.button<{ undo?: boolean } & React.HTMLProps<HTMLButtonElement>>
     props.undo &&
     css`
       background: var(--grey);
+      &:hover {
+        background: var(--dark-grey);
+      }
     `}
 
   ${(props) =>

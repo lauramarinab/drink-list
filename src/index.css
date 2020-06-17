@@ -28,6 +28,9 @@ body {
 :root {
   --primary: #30719c;
   --primary-hover: #0f4c74;
+  --secondary: #e5574d;
   --text: #333333;
+  --dark-grey: #686868;
   --grey: #929292;
+  --line: #f2f1ef;
 }

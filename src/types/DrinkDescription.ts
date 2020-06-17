@@ -3,7 +3,7 @@ export type DrinkDescription = {
   strAlcoholic: string;
   strCategory: string | null;
   strCreativeCommonsConfirmed: string | null;
-  strDrink: string | null;
+  strDrink: string;
   strDrinkAlternate: string | null;
   strDrinkThumb: string;
   strGlass: string;

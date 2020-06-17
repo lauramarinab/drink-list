@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Drink } from "../../types/Drink";
-import { Typography } from "@material-ui/core";
 import styled from "styled-components";
+import { Typography } from "@material-ui/core";
 import { Icon } from "../UI/Icon";
 import { DrinkListContext, MyOrderType } from "../../providers/DrinkListProvider";
-import { DRINK_PRICE } from "../../utils/variable";
+import { DRINK_PRICE } from "../../utils/variables";
 import { ButtonIcon } from "../UI/ButtonIcon";
 
 const Wrapper = styled.div`

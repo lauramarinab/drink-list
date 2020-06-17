@@ -4,11 +4,12 @@ import { CSSTransition } from "react-transition-group";
 import { LateralPanel } from "../UI/LateralPanel";
 import { ButtonIcon } from "../UI/ButtonIcon";
 import { DrinkListContext } from "../../providers/DrinkListProvider";
-import { Typography, Snackbar } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Item } from "./Item";
 import { transparentScrollbar } from "../UI/ScrollbarStyles";
-import { DRINK_PRICE } from "../../utils/variable";
+import { DRINK_PRICE } from "../../utils/variables";
 import { Button } from "../UI/Button";
+import { NotificationSnackbar } from "../UI/NotificationSnackbar";
 
 const Header = styled.div<{ isEmptyOrder: boolean }>`
   display: flex;
@@ -30,7 +31,7 @@ const WrapperItem = styled.div`
 
   & > div {
     border-bottom: 1px;
-    border-bottom-color: #f2f1ef;
+    border-bottom-color: var(--line);
     border-bottom-style: solid;
   }
 `;
@@ -41,7 +42,7 @@ const WrapperTotal = styled.div`
   justify-content: space-between;
   padding: 20px;
   border-top: 1px;
-  border-top-color: #f2f1ef;
+  border-top-color: var(--line);
   border-top-style: solid;
 `;
 
@@ -65,20 +66,11 @@ const OrderPanel: React.FC<Props> = ({ open, handleClose }) => {
 
   return (
     <>
-      <Snackbar
+      <NotificationSnackbar
         open={openNotification}
-        onClose={() => setOpenNotification(false)}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-      >
-        <div style={{ background: "var(--primary)", borderRadius: 15, padding: "10px 20px", color: "#fff" }}>
-          <Typography variant="subtitle2" style={{ fontWeight: 700 }}>
-            Woow, il tuo ordine è stato inviato! 🍸
-          </Typography>
-        </div>
-      </Snackbar>
+        handleClose={() => setOpenNotification(false)}
+        text={<span style={{ fontWeight: 700 }}>Woow, il tuo ordine è stato inviato! 🍸</span>}
+      />
       <CSSTransition in={open} timeout={{ enter: 100, exit: 400 }} unmountOnExit>
         {(status) => (
           <LateralPanel transitionStatus={status} handleClose={handleClose}>
