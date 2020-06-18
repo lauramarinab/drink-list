@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/drink-list/static/css/main.7d14095b.chunk.css",
+    "main.js": "/drink-list/static/js/main.1bd0e03a.chunk.js",
+    "main.js.map": "/drink-list/static/js/main.1bd0e03a.chunk.js.map",
+    "runtime-main.js": "/drink-list/static/js/runtime-main.42ff1f2f.js",
+    "runtime-main.js.map": "/drink-list/static/js/runtime-main.42ff1f2f.js.map",
+    "static/js/2.b446bd21.chunk.js": "/drink-list/static/js/2.b446bd21.chunk.js",
+    "static/js/2.b446bd21.chunk.js.map": "/drink-list/static/js/2.b446bd21.chunk.js.map",
+    "index.html": "/drink-list/index.html",
+    "precache-manifest.548599850fa8a558991f132ab7ad6a20.js": "/drink-list/precache-manifest.548599850fa8a558991f132ab7ad6a20.js",
+    "service-worker.js": "/drink-list/service-worker.js",
+    "static/css/main.7d14095b.chunk.css.map": "/drink-list/static/css/main.7d14095b.chunk.css.map",
+    "static/js/2.b446bd21.chunk.js.LICENSE.txt": "/drink-list/static/js/2.b446bd21.chunk.js.LICENSE.txt",
+    "static/media/drink-logo.svg": "/drink-list/static/media/drink-logo.8b75a8b8.svg",
+    "static/media/icon.css": "/drink-list/static/media/icon.fed137de.svg",
+    "static/media/order-icon.svg": "/drink-list/static/media/order-icon.b90c4681.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.42ff1f2f.js",
+    "static/js/2.b446bd21.chunk.js",
+    "static/css/main.7d14095b.chunk.css",
+    "static/js/main.1bd0e03a.chunk.js"
+  ]
+}
