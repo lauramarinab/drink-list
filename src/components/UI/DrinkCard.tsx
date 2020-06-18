@@ -6,6 +6,7 @@ import { Typography } from "@material-ui/core";
 import { DrinkListContext } from "../../providers/DrinkListProvider";
 import { NotificationSnackbar } from "./NotificationSnackbar";
 import { ThumbDrinkCardSkeleton } from "./Skeleton/styles";
+import { addedToYourOrder } from "../../utils/messages";
 
 const Wrapper = styled.div`
   position: relative;
@@ -57,7 +58,7 @@ const DrinkCard: React.FC<Props> = ({ drink, onSelectedDrink }) => {
         handleClose={() => setOpenNotification(false)}
         text={
           <>
-            Yeah! <span style={{ fontWeight: 700 }}>{strDrink}</span> è stato aggiunto al tuo ordine 😎
+            Yeah! <span style={{ fontWeight: 700 }}>{strDrink}</span> {addedToYourOrder}
           </>
         }
       />

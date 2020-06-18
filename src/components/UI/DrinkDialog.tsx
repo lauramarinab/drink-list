@@ -1,6 +1,6 @@
 import * as React from "react";
 import useSWR from "swr";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Dialog, Typography } from "@material-ui/core";
 import { fetchData } from "../../client";
 import { DrinkDescription } from "../../types/DrinkDescription";
@@ -10,6 +10,7 @@ import { Divider } from "./Divider";
 import { Button } from "./Button";
 import { getAllIngredients } from "../../utils/getAllIngredients";
 import { DRINK_PRICE } from "../../utils/variables";
+import { ThumbDialogSkeleton } from "./Skeleton/styles";
 
 const Wrapper = styled.div`
   position: relative;
@@ -27,10 +28,16 @@ const DrinkInfo = styled.div`
   overflow-y: hidden;
 `;
 
-const DrinkImg = styled.img`
+const DrinkImg = styled.img<{ isVisible: boolean }>`
   max-width: 245px;
   max-height: 100%;
   object-fit: cover;
+
+  ${(props) =>
+    !props.isVisible &&
+    css`
+      display: none;
+    `}
 `;
 
 const ButtonSection = styled.div`
@@ -60,6 +67,10 @@ interface Props {
 const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
   const { onChangeMyOrder } = React.useContext(DrinkListContext);
 
+  const [loadingImg, setLoadingImg] = React.useState<boolean>(true);
+
+  const handleImgLoaded = () => setLoadingImg(false);
+
   const { data: drinkDescriptionData, error: drinkDescriptionError } = useSWR<{ drinks: Array<DrinkDescription> }>(
     `/lookup.php?i=${drinkId}`,
     fetchData
@@ -82,7 +93,8 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
   return (
     <Dialog open={open && Boolean(drink)} onClose={() => handleClose()}>
       <Wrapper>
-        <DrinkImg src={strDrinkThumb} alt={strDrink} />
+        {loadingImg && <ThumbDialogSkeleton />}
+        <DrinkImg src={strDrinkThumb} alt={strDrink} isVisible={!loadingImg} onLoad={handleImgLoaded} />
         <RightSection>
           <DrinkInfo>
             <TitlePrice>
@@ -96,10 +108,10 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
             <Typography variant="subtitle2">{strGlass}</Typography>
             <Divider style={{ paddingTop: 15 }} />
             <div style={{ overflowY: "scroll", height: "calc(100% - 60px)", paddingTop: 15 }}>
-              {strInstructions && (
+              {allIngredients.length > 0 && (
                 <>
                   <Typography variant="caption" style={{ color: "var(--secondary)" }}>
-                    Ingredienti:
+                    Ingredients
                   </Typography>
                   <Typography variant="body2" style={{ marginBottom: 10 }}>
                     {allIngredients.join(", ")}
@@ -109,7 +121,7 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
               {strInstructions && (
                 <>
                   <Typography variant="caption" style={{ color: "var(--secondary)" }}>
-                    Istruzioni:
+                    Steps
                   </Typography>
                   <Typography variant="body2">{strInstructions}</Typography>
                 </>
@@ -118,7 +130,7 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
           </DrinkInfo>
           <ButtonSection>
             <Button undo onClick={() => handleClose()} style={{ marginRight: 15 }}>
-              Annulla
+              Undo
             </Button>
             <Button
               onClick={() => {
@@ -126,7 +138,7 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
                 handleClose(true);
               }}
             >
-              Ordina
+              Add to order
             </Button>
           </ButtonSection>
         </RightSection>

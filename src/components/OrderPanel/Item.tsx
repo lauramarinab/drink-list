@@ -27,7 +27,7 @@ const Item: React.FC<Props> = ({ order }) => {
 
   return (
     <Wrapper>
-      <div style={{ display: "flex", alignItems: "center", marginBottom: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: 5 }}>
         <Icon
           name="close"
           iconSize="small"

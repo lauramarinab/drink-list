@@ -11,6 +11,7 @@ import { DrinkDialog } from "./UI/DrinkDialog";
 import { NotificationSnackbar } from "./UI/NotificationSnackbar";
 import { DrinksListSkeleton } from "./UI/Skeleton/DrinksListSkeleton";
 import { ErrorSnackbar } from "./UI/ErrorSnackbar";
+import { addedToYourOrder } from "../utils/messages";
 
 const WrapperList = styled.div`
   height: calc(100vh - 130px);
@@ -82,7 +83,7 @@ const DrinksList: React.FC = () => {
         handleClose={() => setOpenNotification(false)}
         text={
           <>
-            Yeah! <span style={{ fontWeight: 700 }}>{selectedDrink?.strDrink}</span> è stato aggiunto al tuo ordine 😎
+            Yeah! <span style={{ fontWeight: 700 }}>{selectedDrink?.strDrink}</span> {addedToYourOrder}
           </>
         }
       />
@@ -101,7 +102,7 @@ const DrinksList: React.FC = () => {
       />
       <div style={{ overflow: "hidden" }}>
         <Typography variant="subtitle1" style={{ padding: "0px 20px", height: 40, fontWeight: 700 }}>
-          La nostra selezione
+          Our selection
         </Typography>
         <WrapperList>
           <List>{renderDrinksList()}</List>

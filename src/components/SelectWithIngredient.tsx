@@ -4,6 +4,8 @@ import { fetchData } from "../client";
 import { Ingredient } from "../types/Ingredient";
 import { Select } from "./UI/Select";
 import { ErrorSnackbar } from "./UI/ErrorSnackbar";
+import { Typography } from "@material-ui/core";
+import { loadingIngredients } from "../utils/messages";
 
 interface Props {
   selectedIngredient: string | null;
@@ -22,7 +24,11 @@ const SelectWithIngredient: React.FC<Props> = ({ selectedIngredient, onChangeIng
   }
 
   if (!allIngredients) {
-    return <div style={{ height: 32 }}> Sto cercando gli ingredienti 😼</div>;
+    return (
+      <div style={{ height: 48, display: "flex", alignItems: "center" }}>
+        <Typography variant="caption">{loadingIngredients}</Typography>
+      </div>
+    );
   }
 
   return (

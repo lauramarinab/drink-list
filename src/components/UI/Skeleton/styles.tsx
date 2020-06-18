@@ -34,6 +34,11 @@ const ThumbDrinkCardSkeleton = styled(SkeletonBox)`
   height: 190px;
 `;
 
+const ThumbDialogSkeleton = styled(SkeletonBox)`
+  min-width: 245px;
+  height: 300px;
+`;
+
 const ActionsDrinkCard = styled.div`
   display: flex;
   align-items: center;
@@ -54,6 +59,7 @@ export {
   BackgroundAnimation,
   WrapperDrinkCard,
   ThumbDrinkCardSkeleton,
+  ThumbDialogSkeleton,
   ActionsDrinkCard,
   SkeletonButton,
   SkeletonLabel,

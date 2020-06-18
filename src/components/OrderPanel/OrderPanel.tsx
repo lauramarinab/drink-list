@@ -10,6 +10,7 @@ import { transparentScrollbar } from "../UI/ScrollbarStyles";
 import { DRINK_PRICE } from "../../utils/variables";
 import { Button } from "../UI/Button";
 import { NotificationSnackbar } from "../UI/NotificationSnackbar";
+import { sentYourOrder, emptyOrder } from "../../utils/messages";
 
 const Header = styled.div<{ isEmptyOrder: boolean }>`
   display: flex;
@@ -69,20 +70,20 @@ const OrderPanel: React.FC<Props> = ({ open, handleClose }) => {
       <NotificationSnackbar
         open={openNotification}
         handleClose={() => setOpenNotification(false)}
-        text={<span style={{ fontWeight: 700 }}>Woow, il tuo ordine è stato inviato! 🍸</span>}
+        text={<span style={{ fontWeight: 700 }}>{sentYourOrder}</span>}
       />
       <CSSTransition in={open} timeout={{ enter: 100, exit: 400 }} unmountOnExit>
         {(status) => (
           <LateralPanel transitionStatus={status} handleClose={handleClose}>
             <Header isEmptyOrder={isEmptyOrder}>
               <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
-                Il tuo ordine
+                Your order
               </Typography>
               <ButtonIcon iconName="close" onClick={handleClose} />
             </Header>
             {isEmptyOrder && (
               <Typography variant="subtitle2" style={{ padding: 20 }}>
-                Non hai ancora selezionato nessun drink! 🤔
+                {emptyOrder}
               </Typography>
             )}
             <WrapperItem>
@@ -92,7 +93,7 @@ const OrderPanel: React.FC<Props> = ({ open, handleClose }) => {
             </WrapperItem>
             <WrapperTotal>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 30 }}>
-                <Typography variant="subtitle2">Totale</Typography>
+                <Typography variant="subtitle2">Total</Typography>
                 <Typography variant="subtitle2" style={{ fontWeight: 700 }}>
                   € {totalQuantity * DRINK_PRICE}
                 </Typography>
@@ -106,7 +107,7 @@ const OrderPanel: React.FC<Props> = ({ open, handleClose }) => {
                 }}
                 disabled={isEmptyOrder}
               >
-                Invia ordine
+                Send order
               </Button>
             </WrapperTotal>
           </LateralPanel>
