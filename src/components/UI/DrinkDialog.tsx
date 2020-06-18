@@ -8,8 +8,8 @@ import { ErrorSnackbar } from "./ErrorSnackbar";
 import { DrinkListContext } from "../../providers/DrinkListProvider";
 import { Divider } from "./Divider";
 import { Button } from "./Button";
-import { pick, flatMap } from "lodash";
 import { getAllIngredients } from "../../utils/getAllIngredients";
+import { DRINK_PRICE } from "../../utils/variables";
 
 const Wrapper = styled.div`
   position: relative;
@@ -42,6 +42,12 @@ const ButtonSection = styled.div`
 const RightSection = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+`;
+
+const TitlePrice = styled.div`
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -79,9 +85,14 @@ const DrinkDialog: React.FC<Props> = ({ open, handleClose, drinkId }) => {
         <DrinkImg src={strDrinkThumb} alt={strDrink} />
         <RightSection>
           <DrinkInfo>
-            <Typography variant="subtitle1" style={{ fontWeight: 700, letterSpacing: 0.5 }}>
-              {strDrink}
-            </Typography>
+            <TitlePrice>
+              <Typography variant="subtitle1" style={{ fontWeight: 700, letterSpacing: 0.5 }}>
+                {strDrink}
+              </Typography>
+              <Typography variant="subtitle1" style={{ fontWeight: 700, letterSpacing: 0.5 }}>
+                € {DRINK_PRICE}
+              </Typography>
+            </TitlePrice>
             <Typography variant="subtitle2">{strGlass}</Typography>
             <Divider style={{ paddingTop: 15 }} />
             <div style={{ overflowY: "scroll", height: "calc(100% - 60px)", paddingTop: 15 }}>

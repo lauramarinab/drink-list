@@ -9,23 +9,34 @@ import { DrinkCard } from "./UI/DrinkCard";
 import { transparentScrollbar } from "./UI/ScrollbarStyles";
 import { DrinkDialog } from "./UI/DrinkDialog";
 import { NotificationSnackbar } from "./UI/NotificationSnackbar";
+import { DrinksListSkeleton } from "./UI/Skeleton/DrinksListSkeleton";
+import { ErrorSnackbar } from "./UI/ErrorSnackbar";
 
 const WrapperList = styled.div`
   height: calc(100vh - 130px);
   overflow-y: scroll;
   padding: 0px 10px;
   padding-bottom: 15px;
+
   ${transparentScrollbar};
 `;
 
 const List = styled.div`
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  row-gap: 40px;
+  row-gap: 30px;
   justify-items: center;
   padding: 20px 10px;
 
   ${transparentScrollbar};
+
+  @media (max-width: 900px) {
+    grid-template-columns: 33% 33% 33%;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 50% 50%;
+  }
 `;
 
 const DrinksList: React.FC = () => {
@@ -44,6 +55,26 @@ const DrinksList: React.FC = () => {
 
   const selectedDrink = drinks.find((d) => d.idDrink === selectedDrinkId);
 
+  const renderDrinksList = () => {
+    if (drinksByIngredient && !errorDrinkList) {
+      return (
+        <>
+          {drinks.map((drink, i) => (
+            <DrinkCard
+              drink={drink}
+              key={i}
+              onSelectedDrink={(id) => {
+                setSelectedDrinkId(id);
+                setOpenDrinkDialog(true);
+              }}
+            />
+          ))}
+        </>
+      );
+    }
+    return <DrinksListSkeleton />;
+  };
+
   return (
     <>
       <NotificationSnackbar
@@ -55,6 +86,7 @@ const DrinksList: React.FC = () => {
           </>
         }
       />
+      <ErrorSnackbar open={errorDrinkList} />
       <DrinkDialog
         open={openDrinkDialog}
         handleClose={(isAddedToOrder) => {
@@ -72,18 +104,7 @@ const DrinksList: React.FC = () => {
           La nostra selezione
         </Typography>
         <WrapperList>
-          <List>
-            {drinks.map((drink, i) => (
-              <DrinkCard
-                drink={drink}
-                key={i}
-                onSelectedDrink={(id) => {
-                  setSelectedDrinkId(id);
-                  setOpenDrinkDialog(true);
-                }}
-              />
-            ))}
-          </List>
+          <List>{renderDrinksList()}</List>
         </WrapperList>
       </div>
     </>
