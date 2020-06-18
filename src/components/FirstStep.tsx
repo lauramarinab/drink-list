@@ -22,7 +22,7 @@ const FirstStep: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Scegli il tuo ingrediente preferito e lasciati ispirare 🤩</Title>
+      <Title>Choose your favorite ingredient and get inspired 🤩</Title>
       <SelectWithIngredient selectedIngredient={ingredient} onChangeIngredient={onChangeIngredient} />
     </Wrapper>
   );

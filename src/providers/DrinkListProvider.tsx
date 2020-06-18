@@ -15,7 +15,7 @@ type DrinkListContext = {
 const DrinkListContext = React.createContext<DrinkListContext>({} as DrinkListContext);
 
 const DrinkListProvider: React.FC = ({ children }) => {
-  const [ingredient, setIngredient] = React.useState<string | null>("Gin");
+  const [ingredient, setIngredient] = React.useState<string | null>(null);
   const [myOrder, setMyOrder] = React.useState<Array<MyOrderType>>([]);
 
   const onChangeIngredient = (ingredient: string) => setIngredient(ingredient);

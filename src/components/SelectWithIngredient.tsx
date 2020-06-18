@@ -34,8 +34,8 @@ const SelectWithIngredient: React.FC<Props> = ({ selectedIngredient, onChangeIng
   return (
     <Select
       options={allIngredients.drinks.map((i) => i.strIngredient1)}
-      placeholder="Seleziona un ingrediente"
-      label="Ingrediente"
+      placeholder="Select an ingredient"
+      label="Ingredients"
       minWidth={minWidth}
       handleChange={(option) => onChangeIngredient(option)}
       selectedOption={selectedIngredient}
