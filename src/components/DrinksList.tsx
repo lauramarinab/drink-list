@@ -59,7 +59,7 @@ const DrinksList: React.FC = () => {
   const renderDrinksList = () => {
     if (drinksByIngredient && !errorDrinkList) {
       return (
-        <>
+        <List data-testid="drinks-list">
           {drinks.map((drink, i) => (
             <DrinkCard
               drink={drink}
@@ -70,15 +70,20 @@ const DrinksList: React.FC = () => {
               }}
             />
           ))}
-        </>
+        </List>
       );
     }
-    return <DrinksListSkeleton />;
+    return (
+      <List>
+        <DrinksListSkeleton />
+      </List>
+    );
   };
 
   return (
     <>
       <NotificationSnackbar
+        data-testid="notification-snackbar"
         open={openNotification && Boolean(selectedDrink)}
         handleClose={() => setOpenNotification(false)}
         text={
@@ -104,9 +109,7 @@ const DrinksList: React.FC = () => {
         <Typography variant="subtitle1" style={{ padding: "0px 20px", height: 40, fontWeight: 700 }}>
           Our selection
         </Typography>
-        <WrapperList>
-          <List>{renderDrinksList()}</List>
-        </WrapperList>
+        <WrapperList>{renderDrinksList()}</WrapperList>
       </div>
     </>
   );

@@ -86,7 +86,7 @@ const OrderPanel: React.FC<Props> = ({ open, handleClose }) => {
                 {emptyOrder}
               </Typography>
             )}
-            <WrapperItem>
+            <WrapperItem data-testid="order-list">
               {myOrder.map((singleOrder, i) => {
                 return <Item key={i} order={singleOrder} />;
               })}

@@ -78,7 +78,7 @@ const OrderIcon: React.FC<Props> = ({ onOpenMyOrder }) => {
           </Badge>
         )}
       </CSSTransition>
-      <ImgOrder src={orderIcon} alt="my order panel" onClick={onOpenMyOrder} />
+      <ImgOrder src={orderIcon} alt="my order panel" onClick={onOpenMyOrder} data-testid="icon-order" />
     </div>
   );
 };

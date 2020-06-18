@@ -62,17 +62,18 @@ const DrinkCard: React.FC<Props> = ({ drink, onSelectedDrink }) => {
           </>
         }
       />
-      <Wrapper data-testid="drink-card">
+      <Wrapper>
         <div style={{ position: "relative" }}>
           {loadingImg && <ThumbDrinkCardSkeleton />}
           <Thumb
+            data-testid="drink-image"
             src={strDrinkThumb}
             alt={strDrink}
             onClick={() => onSelectedDrink(idDrink)}
             isVisible={!loadingImg}
             onLoad={handleImgLoaded}
           />
-          <WrapperAction>
+          <WrapperAction data-testid="icon-actions">
             <ButtonIcon iconName="show" style={{ marginRight: 20 }} onClick={() => onSelectedDrink(idDrink)} />
             <ButtonIcon
               iconName="add"

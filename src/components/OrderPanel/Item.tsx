@@ -38,7 +38,7 @@ const Item: React.FC<Props> = ({ order }) => {
         </Typography>
       </div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: 20 }}>
-        <QuantitySection>
+        <QuantitySection data-testid="quantity-section">
           <ButtonIcon
             iconName="remove"
             onClick={() => onChangeMyOrder({ id: idDrink, name: strDrink }, "single-remove")}
