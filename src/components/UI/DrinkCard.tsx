@@ -62,7 +62,7 @@ const DrinkCard: React.FC<Props> = ({ drink, onSelectedDrink }) => {
           </>
         }
       />
-      <Wrapper>
+      <Wrapper data-testid="drink-card">
         <div style={{ position: "relative" }}>
           {loadingImg && <ThumbDrinkCardSkeleton />}
           <Thumb

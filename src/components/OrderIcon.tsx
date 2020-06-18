@@ -72,7 +72,11 @@ const OrderIcon: React.FC<Props> = ({ onOpenMyOrder }) => {
   return (
     <div style={{ justifySelf: "end", position: "relative" }}>
       <CSSTransition in={totalQuantity > 0} timeout={0} unmountOnExit>
-        {(status) => <Badge className={status}>{totalQuantity}</Badge>}
+        {(status) => (
+          <Badge className={status} data-testid="badge-order">
+            {totalQuantity}
+          </Badge>
+        )}
       </CSSTransition>
       <ImgOrder src={orderIcon} alt="my order panel" onClick={onOpenMyOrder} />
     </div>

@@ -6,6 +6,7 @@ import { Select } from "./UI/Select";
 import { ErrorSnackbar } from "./UI/ErrorSnackbar";
 import { Typography } from "@material-ui/core";
 import { loadingIngredients } from "../utils/messages";
+import { sortBy } from "lodash";
 
 interface Props {
   selectedIngredient: string | null;
@@ -31,9 +32,11 @@ const SelectWithIngredient: React.FC<Props> = ({ selectedIngredient, onChangeIng
     );
   }
 
+  const orderedIngredients = sortBy(allIngredients.drinks, "strIngredient1");
+
   return (
     <Select
-      options={allIngredients.drinks.map((i) => i.strIngredient1)}
+      options={orderedIngredients.map((i) => i.strIngredient1)}
       placeholder="Select an ingredient"
       label="Ingredients"
       minWidth={minWidth}
